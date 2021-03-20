@@ -89,3 +89,17 @@ axios.get("https://api.github.com/users/stu-wd")
     Using that array, iterate over it, requesting data for each user, creating a new card for each
     user, and adding that card to the DOM.
 */
+
+const followersArray = ["danieleremchuk", "ryanhammer", "rosecrowned", "PVigar88", "tetondan"];
+
+followersArray.forEach(username =>
+  axios.get(`https://api.github.com/users/${username}`)
+    .then(res => {
+      let newCard = markupMaker(res.data)
+      cards.appendChild(newCard)
+    })
+    .catch(err => console.log(`you can't do that bud`))
+    .finally(() => console.log(`all done finally`))
+  )
+
+
